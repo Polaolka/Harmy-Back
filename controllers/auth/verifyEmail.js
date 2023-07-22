@@ -68,7 +68,7 @@ const verifyEmail = async (req, res) => {
               // Після виконання запиту тут можна обробити відповідь сервера
               console.log(data);
               // Перенаправити користувача на сторінку застосунку після успішного залогінення
-              window.location.href = "${BASE_URL}/typesOfDonats";
+              window.location.href = "https://andrewsydorenko.github.io/harmy/";
             })
             .catch((error) => {
               console.error("Помилка залогінення:", error);
