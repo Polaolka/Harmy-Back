@@ -14,9 +14,9 @@ const verifyEmail = async (req, res) => {
   const user = await User.findOne({ verificationToken });
 
   if (!user) {
-    res.json({
-      message: "User not found",
-    });
+    // res.json({
+    //   message: "User not found",
+    // });
     throw RequestError(404, "Not Found");
   }
 
@@ -26,12 +26,7 @@ const verifyEmail = async (req, res) => {
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "240h" });
 
-  if (!user) {
-    res.json({
-      message: "User not found",
-    });
-    throw RequestError(404, "Not Found");
-  }
+
 
   await User.findByIdAndUpdate(user._id, {
     verify: true,
@@ -42,7 +37,7 @@ const verifyEmail = async (req, res) => {
   res.cookie("authToken", token, {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000,
-    sameSite: "lax", 
+    sameSite: "lax",
   });
 
   res.status(200).send(`
