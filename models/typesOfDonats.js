@@ -8,10 +8,6 @@ const typeSchema = new Schema(
       type: String,
       required: [true, "Set name for type"],
     },
-    typeOfDonatsAvatarURL: {
-      type: String,
-      required: true,
-    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -25,19 +21,15 @@ const addTypeOfDonatsSchema = Joi.object({
     "string.max": "The typeName cannot exceed 30.",
     "any.required": "The typeName field is required.",
   }),
-  typeOfDonatsAvatarURL: Joi.string().required().messages({
-    "string.base": "The typeOfDonatsAvatarURL must be a string.",
-    "any.required": "The typeOfDonatsAvatarURL field is required.",
-  }),
 });
 
-const schemas = {
+const typeShemas = {
   addTypeOfDonatsSchema
 };
 
 const Type = model("type", typeSchema);
 
 module.exports = {
-  schemas,
+  typeShemas,
   Type,
 };

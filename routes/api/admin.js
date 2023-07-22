@@ -7,11 +7,11 @@ const ctrlTypes = require("../../controllers/donats");
 
 const {
   validateBody,
-//   authenticate,
   validateRole,
 } = require("../../middlewares");
 
 const { schemas } = require("../../models/user");
+const { typeShemas } = require("../../models/typesOfDonats");
 
 const { ctrlWrapper } = require("../../helpers");
 
@@ -29,5 +29,8 @@ router.patch(
 
 // get all types of donats
 router.get("/typesOfDonats", validateRole, ctrlWrapper(ctrlTypes.getTypesOfDonats));
+
+// add type of donats
+router.post("/typesOfDonats", validateRole, validateBody(typeShemas.addTypeOfDonatsSchema), ctrlWrapper(ctrl.addTypesOfDonats));
 
   module.exports = router;
