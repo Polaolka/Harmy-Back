@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const ctrl = require("../../controllers/admin");
+const ctrlTypes = require("../../controllers/donats");
 
 const {
   validateBody,
@@ -26,5 +27,7 @@ router.patch(
     ctrlWrapper(ctrl.updateRole)
   );
 
+// get all types of donats
+router.get("/typesOfDonats", validateRole, ctrlWrapper(ctrlTypes.getTypesOfDonats));
 
   module.exports = router;

@@ -4,8 +4,9 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser')
 require("dotenv").config();
 
-// const swaggerUi = require("swagger-ui-express");
-// const swaggerDocument = require("./swagger.json");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+// const swaggerAutogen = require('swagger-autogen')();
 
 const typesOfDonatsRouter = require("./routes/api/typesOfDonats");
 const authRouter = require("./routes/api/auth");
@@ -25,6 +26,7 @@ app.use(express.static("public"));
 app.use("/auth", authRouter);
 app.use("/typesOfDonats", typesOfDonatsRouter);
 app.use("/admin", adminRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
