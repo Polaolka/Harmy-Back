@@ -12,13 +12,11 @@ const addTypesOfDonats = async (req, res) => {
     throw RequestError(409, "category already existe");
   }
 
-
-  // const data = {
-  //   typeName,
-  //   typeOfDonatsAvatarURL
-  // };
   const result = await Type.create({ typeName });
-  res.status(201).json({result});
+  const responseData = result.toObject();
+  delete responseData.createdAt;
+  delete responseData.updatedAt;
+  res.status(201).json(responseData);
 };
 
 module.exports = addTypesOfDonats;
