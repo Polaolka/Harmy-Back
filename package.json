@@ -2,6 +2,9 @@
   "name": "Harmy-Back",
   "version": "0.0.0",
   "private": true,
+    "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "test": "jest",
     "start": "cross-env NODE_ENV=production node ./server.js",
