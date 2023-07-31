@@ -53,6 +53,36 @@ const donatSchema = new Schema(
       type: String,
       default: "",
     },
+    isOpen:  { 
+      type: Boolean, 
+      default: true 
+    },
+    isPublic: {
+      type: Boolean, 
+      default: true 
+    },
+    isReported: {
+      type: Boolean, 
+      default: false 
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    report: { 
+      type: 
+      {
+        reportDescr: { type: String, default: ""},
+        reportPhoto1Url: { type: String, default: ""},
+        reportPhoto2Url: { type: String, default: ""},
+        reportPhoto3Url: { type: String, default: ""},
+      },
+      default: {
+        reportDescr: "",
+        reportPhoto1Url: "",
+        reportPhoto2Url: "",
+        reportPhoto3Url: ""},
+      },
   },
   { versionKey: false, timestamps: true }
 );
