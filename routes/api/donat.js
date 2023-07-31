@@ -16,8 +16,11 @@ const { isValidId } = require("../../middlewares");
 
 const router = express.Router();
 
-// all recipes
+// all donats
 router.get("/main", ctrlWrapper(ctrl.getAllOpenAndPublicDonats));
+
+// own donats
+router.get("/own-requests", authenticate, ctrlWrapper(ctrl.getOwnRequest));
 
 // receiving donats by category
 // router.get(
