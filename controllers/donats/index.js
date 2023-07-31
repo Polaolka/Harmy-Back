@@ -4,6 +4,7 @@ const getDonatById= require("./getDonatById");
 const getAllDonats= require("./getAllDonats");
 const getAllOpenAndPublicDonats= require("./getAllOpenAndPublicDonats");
 const getOwnRequest= require("./getOwnRequest");
+const addDonatsReport= require("./addDonatsReport");
 
 module.exports = {
     getTypesOfDonats,
@@ -11,5 +12,6 @@ module.exports = {
     getDonatById,
     getAllDonats,
     getAllOpenAndPublicDonats,
-    getOwnRequest
+    getOwnRequest,
+    addDonatsReport,
 };

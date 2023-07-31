@@ -6,6 +6,7 @@ const {
   validateVolunteerRole,
   // validateBody,
   authenticate,
+  uploadReport,
 } = require("../../middlewares");
 
 const { ctrlWrapper } = require("../../helpers");
@@ -38,10 +39,11 @@ router.get("/own-requests", authenticate, ctrlWrapper(ctrl.getOwnRequest));
 
 // array('photos', 3)
 // adding a report
-router.post(
-  "/add-report",
+router.patch(
+  "/add-report/:id",
   authenticate,
   validateVolunteerRole,
+  uploadReport.array('photosReport', 3),
   ctrlWrapper(ctrl.addDonatsReport)
 );
 
