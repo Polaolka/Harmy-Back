@@ -36,6 +36,14 @@ router.get("/own-requests", authenticate, ctrlWrapper(ctrl.getOwnRequest));
 //   ctrlWrapper(ctrl.getPopularDonats)
 // );
 
+// array('photos', 3)
+// adding a report
+router.post(
+  "/add-report",
+  authenticate,
+  validateVolunteerRole,
+  ctrlWrapper(ctrl.addDonatsReport)
+);
 
 // adding a new donat
 router.post(
