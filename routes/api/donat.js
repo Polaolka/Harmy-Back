@@ -52,7 +52,7 @@ router.post(
 // router.get("/ingredient", authenticate, ctrlWrapper(ctrl.getByIngredient));
 
 // donat by id
-router.get("/:id", authenticate, isValidId, ctrlWrapper(ctrl.getDonatById));
+router.get("/:id", isValidId, ctrlWrapper(ctrl.getDonatById));
 
 
 module.exports = router;
