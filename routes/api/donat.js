@@ -4,7 +4,7 @@ const ctrl = require("../../controllers/donats");
 
 const {
   validateVolunteerRole,
-  validateBody,
+  // validateBody,
   authenticate,
 } = require("../../middlewares");
 
@@ -12,12 +12,12 @@ const { ctrlWrapper } = require("../../helpers");
 
 const { isValidId } = require("../../middlewares");
 
-const { schemas } = require("../../models/donat");
+// const { schemas } = require("../../models/donat");
 
 const router = express.Router();
 
 // all recipes
-router.get("/main", ctrlWrapper(ctrl.getAllDonats));
+router.get("/main", ctrlWrapper(ctrl.getAllOpenAndPublicDonats));
 
 // receiving donats by category
 // router.get(
