@@ -126,7 +126,7 @@ const reportStorage = new CloudinaryStorage({
       folder: folder,
       allowed_formats: ['jpg', 'png'],
       public_id: file.originalname,
-      transformation: [{ width: 350, height: 250, crop: "fill" }],
+      transformation: [{ width: 350, height: 250, crop: "fit" }],
     };
   },
 });
