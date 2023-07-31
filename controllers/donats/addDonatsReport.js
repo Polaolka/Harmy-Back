@@ -13,7 +13,7 @@ const addDonatsReport = async (req, res) => {
   const donat = await Donat.findByIdAndUpdate(
     reqId,
     {
-      $set: { isReported: true, report: {reportPhoto1Url, reportPhoto2Url, reportPhoto3Url, reportDescr} },
+      $set: { isReported: true, isOpen: false, report: {reportPhoto1Url, reportPhoto2Url, reportPhoto3Url, reportDescr} },
     },
     { new: true }
   );
@@ -28,6 +28,7 @@ const addDonatsReport = async (req, res) => {
       reportPhoto3Url: donat.report.reportPhoto3Url,
       reportDescr: donat.report.reportDescr,
       isReported: donat.isReported,
+      isOpen: donat.isOpen,
     });
 };
 
