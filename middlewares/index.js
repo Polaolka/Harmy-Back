@@ -6,7 +6,8 @@ const {
 const isValidId = require("./isValidId");
 const authenticate = require("./authenticate");
 const validateRole = require("./validateRole");
-const {uploadAva, uploadLogo, uploadTypeOfDonats} = require("./upload");
+const validateVolunteerRole = require("./validateVolunteerRole");
+const {uploadAva, uploadLogo, uploadTypeOfDonats, uploadUnits} = require("./upload");
 
 module.exports = {
   validateFavoriteBody,
@@ -17,5 +18,7 @@ module.exports = {
   uploadAva,
   uploadLogo,
   uploadTypeOfDonats,
-  validateRole
+  uploadUnits,
+  validateRole,
+  validateVolunteerRole
 };
