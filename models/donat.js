@@ -30,10 +30,12 @@ const donatSchema = new Schema(
     amountOfFee: {
       type: String,
       default: "",
+      required: [true, "Set target amount"],
     },
     socialPage: {
       type: String,
       default: "",
+      required: [true, "Set social page"],
     },
     linkToMono: {
       type: String,

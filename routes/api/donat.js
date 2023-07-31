@@ -16,8 +16,8 @@ const { schemas } = require("../../models/donat");
 
 const router = express.Router();
 
-// user recipes
-// router.get("/own-donats", authenticate, ctrlWrapper(ctrl.getOwnRecipe));
+// all recipes
+router.get("/main", ctrlWrapper(ctrl.getAllDonats));
 
 // receiving donats by category
 // router.get(
