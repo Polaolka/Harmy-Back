@@ -6,12 +6,22 @@ const addDonatsReport = async (req, res) => {
   const { _id: userId } = req.user;
   const { id: reqId } = req.params;
 
-  const donatData = await Donat.findOne({ _id: reqId });
-  if (donatData.owner.toString() !== userId.toString()) {
-    throw RequestError(403, "another author");
+  const donatData = await Donat.findById(reqId);
+
+  const areEqual = userId.equals(donatData.owner);
+
+  if (!areEqual) {
+    res
+      .status(403)
+      .json({ message: "It is possible to update only own request" });
+    return;
   }
 
   const { reportDescr } = req.body;
+
+  if (!reportDescr) {
+    throw RequestError(400, "Report description is required");
+  }
 
   const reportPhoto1Url = req.files[0] ? req.files[0].path : "";
   const reportPhoto2Url = req.files[1] ? req.files[1].path : "";

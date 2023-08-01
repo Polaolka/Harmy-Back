@@ -13,7 +13,7 @@ const authRouter = require("./routes/api/auth");
 const adminRouter = require("./routes/api/admin");
 const unitRouter = require("./routes/api/unit");
 const requestRouter = require("./routes/api/request");
-// const recipesRouter = require("./routes/api/recipes");
+const petitionRouter = require("./routes/api/petition");
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -30,6 +30,7 @@ app.use("/typesOfDonats", typesOfDonatsRouter);
 app.use("/units", unitRouter);
 app.use("/admin", adminRouter);
 app.use("/requests", requestRouter);
+app.use("/petition", petitionRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
