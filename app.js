@@ -14,6 +14,7 @@ const adminRouter = require("./routes/api/admin");
 const unitRouter = require("./routes/api/unit");
 const requestRouter = require("./routes/api/request");
 const petitionRouter = require("./routes/api/petition");
+const fundRouter = require("./routes/api/charitableFunds");
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -30,7 +31,8 @@ app.use("/typesOfDonats", typesOfDonatsRouter);
 app.use("/units", unitRouter);
 app.use("/admin", adminRouter);
 app.use("/requests", requestRouter);
-app.use("/petition", petitionRouter);
+app.use("/petitions", petitionRouter);
+app.use("/funds", fundRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {

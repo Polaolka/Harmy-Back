@@ -1,16 +1,16 @@
 const { Donat } = require("../../models/donat");
-// const { Unit } = require("../../models/unit");
 
 const addDonat = async (req, res) => {
   const { _id: owner } = req.user;
 
-  const { typeName, donatDescription, amountOfFee, socialPage, linkToMono, private24Wallet, anotherWallet, cryptoWallet, unitInfo } = req.body;
+  const { typeName, requestDescription, requestTitle, amountOfFee, socialPage, linkToMono, private24Wallet, anotherWallet, cryptoWallet, unitInfo } = req.body;
 
 
   const data = {
     typeName,
     unitInfo,
-    donatDescription,
+    requestDescription,
+    requestTitle,
     amountOfFee,
     socialPage,
     linkToMono,
@@ -21,9 +21,12 @@ const addDonat = async (req, res) => {
 
   const result = await Donat.create({ ...data, owner });
 
-  console.log(result);
+  const populatedResult = await Donat.findById(result._id)    .populate("owner", "name")
+  .populate("typeName", "typeName")
+  .populate("unitInfo", "unitName unitAvatarURL");
 
-  res.status(201).json(result);
+
+  res.status(201).json(populatedResult);
 };
 
 module.exports = addDonat;

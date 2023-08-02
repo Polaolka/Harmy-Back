@@ -131,10 +131,35 @@ const reportStorage = new CloudinaryStorage({
   },
 });
 
+const fundStorage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+
+    if (!file) {
+      throw RequestError(404, 'Image Not found');
+    }
+
+    let folder;
+    if (file.fieldname === 'fundIMG') {
+      folder = 'funds';
+    }  else {
+      folder = 'docs';
+    }
+    return {
+      folder: folder,
+      allowed_formats: ['jpg', 'png'],
+      public_id: file.originalname,
+      transformation: [{ width: 200, height: 200 }],
+    };
+  },
+});
+
+
 const uploadAva = multer({ storage: avaStorage });
 const uploadLogo = multer({ storage: logoStorage });
 const uploadTypeOfDonats = multer({ storage: typeOfDonatsStorage });
 const uploadUnits = multer({ storage: unitStorage });
 const uploadReport = multer({ storage: reportStorage});
+const uploadFund = multer({ storage: fundStorage});
 
-module.exports = { uploadAva, uploadLogo, uploadTypeOfDonats, uploadUnits, uploadReport };
+module.exports = { uploadAva, uploadLogo, uploadTypeOfDonats, uploadUnits, uploadReport, uploadFund };

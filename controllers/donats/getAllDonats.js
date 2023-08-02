@@ -1,11 +1,13 @@
 const { Donat } = require("../../models/donat");
 
 const getAllDonats = async (req, res) => {
+  const { page = 1, limit = 1, requestTitle } = req.query;
 
-  const { page = 1, limit = 1 } = req.query;
+  const searchParams = requestTitle ? {requestTitle: { $regex: requestTitle, $options: "i" }} : {};
+
   const skip = (page - 1) * limit;
   const count = await Donat.countDocuments({});
-  const result = await Donat.find({}, "-createdAt -updatedAt")
+  const result = await Donat.find(searchParams, "-createdAt -updatedAt")
     .skip(skip)
     .limit(limit)
     .sort({ createdAt: -1 })

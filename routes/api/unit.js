@@ -2,7 +2,7 @@ const express = require("express");
 
 const ctrl = require("../../controllers/units");
 
-const { validateBody, authenticate, uploadUnits } = require("../../middlewares");
+const { validateBody, uploadUnits, validateVolunteerRole } = require("../../middlewares");
 
 const { schemas } = require("../../models/unit");
 
@@ -17,7 +17,7 @@ router.get("/unitName", validateBody(schemas.getUnitSchema), ctrlWrapper(ctrl.ge
 // adding a new unit
 router.post(
     "/add-new-unit",
-    authenticate,
+    validateVolunteerRole,
     uploadUnits.single("unitIMG"),
     ctrlWrapper(ctrl.addUnit)
   );

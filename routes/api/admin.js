@@ -8,10 +8,13 @@ const ctrlTypes = require("../../controllers/donats");
 const {
   validateBody,
   validateRole,
+  uploadFund,
+  isValidId,
 } = require("../../middlewares");
 
 const { schemas } = require("../../models/user");
 const { typeShemas } = require("../../models/typesOfDonats");
+const { fundSchemas } = require("../../models/charitableFund");
 
 const { ctrlWrapper } = require("../../helpers");
 
@@ -32,5 +35,12 @@ router.get("/typesOfDonats", validateRole, ctrlWrapper(ctrlTypes.getTypesOfDonat
 
 // add type of donats
 router.post("/typesOfDonats", validateRole, validateBody(typeShemas.addTypeOfDonatsSchema), ctrlWrapper(ctrl.addTypesOfDonats));
+
+
+// adding a new fund
+router.post("/add-new-fund", validateRole, uploadFund.single("fundIMG"), validateBody(fundSchemas.addFundSchema), ctrlWrapper(ctrl.addFund));
+
+// deleting a fund by id
+router.delete("/delete-fund/:id", validateRole, isValidId, ctrlWrapper(ctrl.deleteOneFund));
 
   module.exports = router;
