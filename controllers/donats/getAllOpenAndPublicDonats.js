@@ -1,9 +1,17 @@
 const { Donat } = require("../../models/donat");
 
 const getAllDonats = async (req, res) => {
-  const { page = 1, limit = 1, requestTitle } = req.query;
+  const { page = 1, limit = 1, requestTitle, typeName } = req.query;
 
-  const searchParams = requestTitle ? {requestTitle: { $regex: requestTitle, $options: "i" }} : {};
+  const searchParams = {};
+
+  if (requestTitle) {
+    searchParams.requestTitle = { $regex: requestTitle, $options: "i" };
+  }
+  
+  if (typeName) {
+    searchParams.typeName = typeName;
+  }
 
   const skip = (page - 1) * limit;
   const count = await Donat.countDocuments({isOpen: true, isPublic: true});

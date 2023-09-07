@@ -1,7 +1,7 @@
 const { Donat } = require("../../models/donat");
 
 const getAllDonats = async (req, res) => {
-  const { page = 1, limit = 1, requestTitle } = req.query;
+  const { page = 1, limit = 1, requestTitle,  } = req.query;
 
   const searchParams = requestTitle ? {requestTitle: { $regex: requestTitle, $options: "i" }} : {};
 

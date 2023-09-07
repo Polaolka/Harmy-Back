@@ -7,12 +7,17 @@ const ctrl = require("../../controllers/auth");
 const {
   validateBody,
   authenticate,
-  uploadAva,
+  uploadAva, passport
 } = require("../../middlewares");
 
 const { schemas } = require("../../models/user");
 
 const { ctrlWrapper } = require("../../helpers");
+
+// google
+router.get("/google", passport.authenticate("google", {scope: ["email" , "profile"]}));
+router.get("/google/callback", passport.authenticate("google", {session: false}), ctrlWrapper(ctrl.googleAuth));
+
 
 // signup
 router.post(
