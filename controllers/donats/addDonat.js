@@ -21,7 +21,7 @@ const addDonat = async (req, res) => {
 
   const result = await Donat.create({ ...data, owner });
 
-  const populatedResult = await Donat.findById(result._id)    .populate("owner", "name")
+  const populatedResult = await Donat.findById(result._id).populate("owner", "name")
   .populate("typeName", "typeName")
   .populate("unitInfo", "unitName unitAvatarURL");
 

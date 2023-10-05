@@ -14,9 +14,6 @@ const verifyEmail = async (req, res) => {
   const user = await User.findOne({ verificationToken });
 
   if (!user) {
-    // res.json({
-    //   message: "User not found",
-    // });
     throw RequestError(404, "Not Found");
   }
 
@@ -25,8 +22,6 @@ const verifyEmail = async (req, res) => {
   };
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "240h" });
-
-
 
   await User.findByIdAndUpdate(user._id, {
     verify: true,

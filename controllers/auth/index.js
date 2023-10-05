@@ -7,7 +7,7 @@ const updateUser = require("./updateUser");
 const verifyEmail = require("./verifyEmail");
 const resendVerifyEmail = require("./resendVerifyEmail")
 const verifyUser = require("./verifyUser");
-const googleAuth = require("./googleAuth")
+// const googleAuth = require("./googleAuth")
 
 module.exports = {
   register,
@@ -18,5 +18,5 @@ module.exports = {
   verifyEmail,
   resendVerifyEmail, 
   verifyUser,
-  googleAuth
+  // googleAuth
 };
